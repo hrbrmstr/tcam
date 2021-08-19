@@ -27,6 +27,10 @@ The following functions are implemented:
 
 ``` r
 remotes::install_git("https://git.rud.is/hrbrmstr/tcam.git")
+# or
+remotes::install_gitlab("hrbrmstr/tcam")
+# or
+remotes::install_github("hrbrmstr/tcam")
 ```
 
 NOTE: To use the ‘remotes’ install options you will need to have the
@@ -60,7 +64,7 @@ get_status(con)
 ## [1] "1.3"
 ## 
 ## $status$Time
-## [1] "2:02:48.364"
+## [1] "2:07:27.287"
 ## 
 ## $status$Date
 ## [1] "1/1/-30"
