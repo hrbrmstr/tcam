@@ -7,7 +7,7 @@ editor_options:
 hrbrpkghelpr::global_opts()
 ```
 
-```{r badges, results='asis', echo=FALSE, cache=FALSE}
+```{r badges, results='asis', echo=FALSE, cache=FALSE, eval=FALSE}
 hrbrpkghelpr::stinking_badges()
 ```
 
@@ -33,10 +33,52 @@ hrbrpkghelpr::install_block()
 
 ```{r lib-ex}
 library(tcam)
+library(ggplot2) # for plotting
 
 # current version
 packageVersion("tcam")
 
+```
+
+Open a connection and get the status of the tCam:
+
+```{r ex-01}
+con <- tcam_connect()
+
+get_status(con)
+```
+
+Take a picture and plot it:
+
+```{r ex-02, cache=TRUE}
+img <- get_image(con)
+
+ggplot(tidy_radiometric(img)) +
+  geom_tile(
+    aes(x, y, fill = value),
+    color = NA
+  ) +
+  scale_fill_viridis_c(
+    name = "°F",
+    option = "magma"
+  ) +
+  coord_fixed() +
+  labs(
+    x = NULL, y = NULL
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x.bottom = element_blank(),
+    axis.text.y.left = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+  )
+```
+
+Done, so we close the connection.
+
+```{r ex-99}
+close(con)
 ```
 
 ## tcam Metrics

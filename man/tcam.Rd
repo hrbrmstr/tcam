@@ -4,9 +4,13 @@
 \name{tcam}
 \alias{tcam}
 \alias{tcam-package}
-\title{...}
+\title{Retrieve Radiometric Image Data from and Configure and Control tCam and tCam-Mini
+Thermal Imaging Systems}
 \description{
-A good description goes here otherwise CRAN checks fail.
+The tCam and tCam-Mini (\url{https://github.com/danjulio/lepton/tree/master/ESP32})
+are two cameras designed around the ESP32 chipset and provide easy access to
+radiometric data from Lepton 3.5 sensors. Tools are provided to configure, control,
+and receive radiometric data from tCam systems.
 }
 \seealso{
 Useful links:
