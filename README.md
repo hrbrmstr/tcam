@@ -1,4 +1,20 @@
 
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Signed
+by](https://img.shields.io/badge/Keybase-Verified-brightgreen.svg)](https://keybase.io/hrbrmstr)
+![Signed commit
+%](https://img.shields.io/badge/Signed_Commits-100%25-lightgrey.svg)
+[![R-CMD-check](https://github.com/hrbrmstr/tcam/workflows/R-CMD-check/badge.svg)](https://github.com/hrbrmstr/tcam/actions?query=workflow%3AR-CMD-check)
+[![Linux build
+Status](https://travis-ci.org/hrbrmstr/tcam.svg?branch=master)](https://travis-ci.org/hrbrmstr/tcam)
+[![Coverage
+Status](https://codecov.io/gh/hrbrmstr/tcam/branch/master/graph/badge.svg)](https://codecov.io/gh/hrbrmstr/tcam)
+![Minimal R
+Version](https://img.shields.io/badge/R%3E%3D-3.6.0-blue.svg)
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
+
 # tcam
 
 Retrieve Radiometric Image Data from and Configure and Control tCam and
@@ -16,9 +32,15 @@ and receive radiometric data from tCam systems.
 
 The following functions are implemented:
 
+-   `get_config`: Returns a packet with the camera’s current settings.
 -   `get_image`: Returns a packet with metadata, radiometric (or AGC)
     image data and Lepton telemetry objects.
+-   `get_lep_cci`: Reads and returns specified data from the Lepton’s
+    CCI interface.
 -   `get_status`: Returns a packet with camera status.
+-   `get_wifi`: Returns a packet with the camera’s current WiFi and
+    Network configuration.
+-   `set_time`: Set the camera’s clock.
 -   `tcam_connect`: Make a socket connection to a tCam device
 -   `tidy_radiometric`: Return a tidy data frame of Lepton radiometric
     data retrieved with get_image()
@@ -47,11 +69,15 @@ packageVersion("tcam")
 ## [1] '0.1.0'
 ```
 
-Open a connection and get the status of the tCam:
+Open a connection to the tCam:
 
 ``` r
 con <- tcam_connect()
+```
 
+Get the tCam status:
+
+``` r
 get_status(con)
 ## $status
 ## $status$Camera
@@ -64,10 +90,10 @@ get_status(con)
 ## [1] "1.3"
 ## 
 ## $status$Time
-## [1] "2:07:27.287"
+## [1] "12:04:24.769"
 ## 
 ## $status$Date
-## [1] "1/1/-30"
+## [1] "8/20/21"
 ```
 
 Take a picture and plot it:
@@ -99,7 +125,7 @@ ggplot(tidy_radiometric(img)) +
 
 <img src="man/figures/README-ex-02-1.png" width="672" />
 
-Done, so we close the connection.
+Done, so we close the connection (kinda important)
 
 ``` r
 close(con)
@@ -109,10 +135,10 @@ close(con)
 
 | Lang | # Files |  (%) | LoC |  (%) | Blank lines |  (%) | # Lines |  (%) |
 |:-----|--------:|-----:|----:|-----:|------------:|-----:|--------:|-----:|
-| R    |       6 | 0.33 |  74 | 0.28 |          18 | 0.21 |      51 | 0.28 |
-| Rmd  |       1 | 0.06 |  33 | 0.13 |          23 | 0.27 |      37 | 0.21 |
-| YAML |       2 | 0.11 |  23 | 0.09 |           2 | 0.02 |       2 | 0.01 |
-| SUM  |       9 | 0.50 | 130 | 0.50 |          43 | 0.50 |      90 | 0.50 |
+| R    |       6 | 0.33 | 174 | 0.38 |          55 | 0.34 |     123 | 0.37 |
+| Rmd  |       1 | 0.06 |  34 | 0.07 |          25 | 0.15 |      42 | 0.13 |
+| YAML |       2 | 0.11 |  23 | 0.05 |           2 | 0.01 |       2 | 0.01 |
+| SUM  |       9 | 0.50 | 231 | 0.50 |          82 | 0.50 |     167 | 0.50 |
 
 clock Package Metrics for tcam
 

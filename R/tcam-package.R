@@ -16,4 +16,5 @@
 #' @importFrom dplyr mutate mutate_at
 #' @importFrom stringi stri_replace_all_regex
 #' @importFrom utils hasName
+#' @importFrom jsonlite toJSON
 "_PACKAGE"

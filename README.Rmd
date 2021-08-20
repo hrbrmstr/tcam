@@ -40,17 +40,25 @@ packageVersion("tcam")
 
 ```
 
-Open a connection and get the status of the tCam:
+Open a connection to the tCam:
 
-```{r ex-01}
+```{r ex-01a-show, eval=FALSE}
 con <- tcam_connect()
+```
 
+```{r ex-01a-hidden, echo=FALSE}
+con <- tcam_connect("10.1.10.89")
+```
+
+Get the tCam status:
+
+```{r ex-01b}
 get_status(con)
 ```
 
 Take a picture and plot it:
 
-```{r ex-02, cache=TRUE}
+```{r ex-02}
 img <- get_image(con)
 
 ggplot(tidy_radiometric(img)) +
@@ -75,7 +83,7 @@ ggplot(tidy_radiometric(img)) +
   )
 ```
 
-Done, so we close the connection.
+Done, so we close the connection (kinda important)
 
 ```{r ex-99}
 close(con)
